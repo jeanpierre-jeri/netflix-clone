@@ -2,13 +2,11 @@ import { type ChangeEvent } from 'react'
 
 interface Props {
   id: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  value: string
   label: string
   type?: string
 }
 
-export const Input: React.FC<Props> = ({ id, onChange, value, label, type = 'text' }) => {
+export const Input: React.FC<Props> = ({ id, label, type = 'text' }) => {
   return (
     <div className='relative'>
       <input
@@ -16,12 +14,10 @@ export const Input: React.FC<Props> = ({ id, onChange, value, label, type = 'tex
         type={type}
         placeholder=' '
         id={id}
-        value={value}
-        onChange={onChange}
         name={id}
       />
       <label
-        className='absolute text-base text-zinc-400 duration-150 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-6 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3'
+        className='absolute text-base text-zinc-400 duration-150 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3'
         htmlFor={id}
       >
         {label}
