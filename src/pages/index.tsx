@@ -1,6 +1,8 @@
-import type { GetServerSideProps } from 'next'
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { serverSession } from '@/lib/server-auth'
-import { Navbar } from '@/components/organisms'
+import { BillBoard, Navbar } from '@/components/organisms'
+import { getRandomMovie } from '@/lib/movies'
+import { type Movie } from '@prisma/client'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const { session } = await serverSession(req, res)
@@ -14,50 +16,25 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     }
   }
 
+  const { randomMovie } = await getRandomMovie()
+
   return {
     props: {
-      session
+      session,
+      randomMovie
     }
   }
 }
 
-export default function Home() {
+interface Props {
+  randomMovie: Movie
+}
+
+export default function Home({ randomMovie }: Props) {
   return (
     <>
       <Navbar />
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
-      <div className='h-20'></div>
+      <BillBoard randomMovie={randomMovie} />
     </>
   )
 }
