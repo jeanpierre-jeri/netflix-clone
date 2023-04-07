@@ -46,3 +46,48 @@ export function GithubIcon() {
     </svg>
   )
 }
+
+export function ChevronDownIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='48'
+      height='48'
+      viewBox='0 96 960 960'
+      className='max-w-full h-auto'
+      fill='currentColor'
+    >
+      <path d='M480 711 240 471l43-43 197 198 197-197 43 43-240 239Z' />
+    </svg>
+  )
+}
+
+export function SearchIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='48'
+      height='48'
+      viewBox='0 96 960 960'
+      fill='currentColor'
+      className='max-w-full h-auto'
+    >
+      <path d='M796 935 533 672q-30 26-69.959 40.5T378 727q-108.162 0-183.081-75Q120 577 120 471t75-181q75-75 181.5-75t181 75Q632 365 632 471.15 632 514 618 554q-14 40-42 75l264 262-44 44ZM377 667q81.25 0 138.125-57.5T572 471q0-81-56.875-138.5T377 275q-82.083 0-139.542 57.5Q180 390 180 471t57.458 138.5Q294.917 667 377 667Z' />
+    </svg>
+  )
+}
+
+export function BellIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='48'
+      height='48'
+      viewBox='0 96 960 960'
+      fill='currentColor'
+      className='max-w-full h-auto'
+    >
+      <path d='M160 856v-60h84V490q0-84 49.5-149.5T424 258v-29q0-23 16.5-38t39.5-15q23 0 39.5 15t16.5 38v29q81 17 131 82.5T717 490v306h83v60H160Zm320-295Zm0 415q-32 0-56-23.5T400 896h160q0 33-23.5 56.5T480 976ZM304 796h353V490q0-74-51-126t-125-52q-74 0-125.5 52T304 490v306Z' />
+    </svg>
+  )
+}
