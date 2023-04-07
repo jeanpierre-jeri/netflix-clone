@@ -1,17 +1,32 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import { GithubIcon, GoogleIcon, Input } from '@/components/atoms'
 
 import logo from '~/images/logo.webp'
 import { login, register } from '@/lib/utils'
 import { type FormUser } from '@/types'
+import type { GetServerSideProps } from 'next'
+import { authOptions } from '../api/auth/[...nextauth]'
+import { getServerSession } from 'next-auth'
 
 type Variant = 'login' | 'register'
 
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const session = await getServerSession(req, res, authOptions)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/profiles',
+        permanent: false
+      }
+    }
+  }
+  return { props: { session } }
+}
+
 export default function Auth() {
-  const router = useRouter()
   const [variant, setVariant] = useState<Variant>('login')
   const isVariantLogin = variant === 'login'
 
@@ -29,8 +44,6 @@ export default function Auth() {
     } else {
       await register({ email, name, password })
     }
-
-    router.push('/')
     form.reset()
   }
 
@@ -69,7 +82,7 @@ export default function Auth() {
               <button
                 type='button'
                 className='w-10 h-10 bg-white rounded-full flex justify-center items-center hover:opacity-80 transition-opacity p-2'
-                onClick={() => signIn('google', { callbackUrl: '/' })}
+                onClick={() => signIn('google', { callbackUrl: '/profiles' })}
               >
                 <GoogleIcon />
               </button>
@@ -77,7 +90,7 @@ export default function Auth() {
               <button
                 type='button'
                 className='w-10 h-10 bg-white rounded-full flex justify-center items-center hover:opacity-80 transition-opacity p-2'
-                onClick={() => signIn('github', { callbackUrl: '/' })}
+                onClick={() => signIn('github', { callbackUrl: '/profiles' })}
               >
                 <GithubIcon />
               </button>

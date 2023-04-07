@@ -8,7 +8,7 @@ export const login = async ({ email, password }: Pick<FormUser, 'email' | 'passw
       email,
       password,
       redirect: false,
-      callbackUrl: '/'
+      callbackUrl: '/profiles'
     })
   } catch (error) {
     console.log(error)
