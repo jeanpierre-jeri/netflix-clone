@@ -1,7 +1,7 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import type { GetServerSideProps } from 'next'
 import { serverSession } from '@/lib/server-auth'
-import { BillBoard, Navbar } from '@/components/organisms'
-import { getRandomMovie } from '@/lib/movies'
+import { BillBoard, MovieList, Navbar } from '@/components/organisms'
+import { getMovies, getRandomMovie } from '@/lib/movies'
 import { type Movie } from '@prisma/client'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
@@ -16,25 +16,30 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     }
   }
 
-  const { randomMovie } = await getRandomMovie()
+  const [{ randomMovie }, { movies }] = await Promise.all([await getRandomMovie(), await getMovies()])
 
   return {
     props: {
       session,
-      randomMovie
+      randomMovie,
+      movies
     }
   }
 }
 
 interface Props {
   randomMovie: Movie
+  movies: Movie[]
 }
 
-export default function Home({ randomMovie }: Props) {
+export default function Home({ randomMovie, movies }: Props) {
   return (
     <>
       <Navbar />
       <BillBoard randomMovie={randomMovie} />
+      <div className='pb-40'>
+        <MovieList movies={movies} title='Trending Now' />
+      </div>
     </>
   )
 }

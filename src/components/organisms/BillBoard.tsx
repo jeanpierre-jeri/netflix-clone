@@ -9,7 +9,7 @@ export function BillBoard({ randomMovie }: Props) {
   return (
     <section className='relative'>
       <video
-        className='w-full max-h-[56.25vw] object-cover brightness-50'
+        className='w-full h-[60vw] md:h-[48vw] lg:h-[42vw] object-cover brightness-50 object-center'
         poster={randomMovie.thumbnailUrl}
         src={randomMovie.videoUrl}
         autoPlay
@@ -17,7 +17,7 @@ export function BillBoard({ randomMovie }: Props) {
         loop
       ></video>
 
-      <div className='absolute top-1/3 md:top-[40%] left-4 md:left-16 right-0'>
+      <div className='absolute top-1/3 md:top-[50%] md:-translate-y-1/2 left-4 md:left-16 right-0'>
         <h1 className='text-white text-xl md:text-5xl h-full w-1/2 lg:text-6xl font-bold drop-shadow-xl'>
           {randomMovie.title}
         </h1>

@@ -3,11 +3,12 @@ import { signOut, useSession } from 'next-auth/react'
 import redUserImage from '~/images/default-red.webp'
 
 interface Props {
-  visible?: boolean
+  visible: boolean
 }
 
 export function AccountMenu({ visible }: Props) {
   const { data: session } = useSession()
+
   return (
     <div
       className={`${

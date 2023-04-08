@@ -12,3 +12,9 @@ export const getRandomMovie = async () => {
 
   return { randomMovie }
 }
+
+export const getMovies = async () => {
+  const movies = await prisma.movie.findMany()
+
+  return { movies }
+}
