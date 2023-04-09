@@ -1,8 +1,10 @@
 import type { GetServerSideProps } from 'next'
 import { serverSession } from '@/lib/server-auth'
 import { BillBoard, MovieList, Navbar } from '@/components/organisms'
-import { getMovies, getRandomMovie } from '@/lib/movies'
+import { getMovies, getMoviesByUserFavoriteIds, getRandomMovie } from '@/lib/prisma/movies'
 import { type Movie } from '@prisma/client'
+import { getUserFavoriteIds } from '@/lib/prisma/user'
+import { useFavorites } from '@/hooks/useFavorites'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const { session } = await serverSession(req, res)
@@ -16,13 +18,22 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     }
   }
 
-  const [{ randomMovie }, { movies }] = await Promise.all([await getRandomMovie(), await getMovies()])
+  const userFavoriteIds = await getUserFavoriteIds(session.user?.email || '')
+
+  const [{ randomMovie }, { movies }, favorites] = await Promise.all([
+    await getRandomMovie(),
+    await getMovies(),
+    await getMoviesByUserFavoriteIds(userFavoriteIds || [])
+  ])
 
   return {
     props: {
       session,
       randomMovie,
-      movies
+      movies,
+      fallback: {
+        '/api/favorites': favorites
+      }
     }
   }
 }
@@ -33,13 +44,15 @@ interface Props {
 }
 
 export default function Home({ randomMovie, movies }: Props) {
+  const { favorites } = useFavorites()
   return (
     <>
       <Navbar />
-      <BillBoard randomMovie={randomMovie} />
-      <div className='pb-40'>
+      <main className='pb-40'>
+        <BillBoard randomMovie={randomMovie} />
         <MovieList movies={movies} title='Trending Now' />
-      </div>
+        <MovieList movies={favorites} title='My List' />
+      </main>
     </>
   )
 }

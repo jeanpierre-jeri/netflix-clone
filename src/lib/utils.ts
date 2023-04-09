@@ -1,6 +1,7 @@
 import axios from 'redaxios'
 import { type FormUser } from '@/types.d'
 import { signIn } from 'next-auth/react'
+import { type Movie } from '@prisma/client'
 
 export const login = async ({ email, password }: Pick<FormUser, 'email' | 'password'>) => {
   try {
@@ -27,4 +28,15 @@ export const register = async ({ email, name, password }: FormUser) => {
   } catch (error) {
     console.log(error)
   }
+}
+
+export const addFavorite = async (id: string): Promise<Movie[]> => {
+  const { data } = await axios.post(`/api/favorites/${id}`)
+
+  return data
+}
+
+export const removeFavorite = async (id: string): Promise<Movie[]> => {
+  const { data } = await axios.delete(`/api/favorites/${id}`)
+  return data
 }

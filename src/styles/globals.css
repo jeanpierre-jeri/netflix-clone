@@ -7,3 +7,9 @@ body {
   overflow-x: hidden;
   background-color: rgb(24 24 27);
 }
+
+svg {
+  max-width: 100%;
+  height: auto;
+  fill: currentColor;
+}

@@ -1,6 +1,8 @@
 import { type Movie } from '@prisma/client'
 import Image from 'next/image'
 import { PlayIcon } from '../atoms'
+import { FavoriteButton } from '../atoms/FavoriteButton'
+import Link from 'next/link'
 
 interface Props {
   movie: Movie
@@ -26,9 +28,16 @@ export function MovieCard({ movie }: Props) {
           className='object-cover aspect-video cursor-pointer transition-opacity duration-200 shadow-xl rounded-t-md w-full h-[12vw]'
         />
         <div className='z-10 bg-zinc-800 p-2 lg:p-4 absolute w-full transition-all shadow-md rounded-b-md'>
-          <button className='w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition-colors hover:bg.neutral-300'>
-            <PlayIcon />
-          </button>
+          <div className='flex gap-3 items-center'>
+            <Link
+              href={`/watch/${movie.id}`}
+              className='w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition-colors hover:bg.neutral-300 p-1'
+            >
+              <PlayIcon />
+            </Link>
+
+            <FavoriteButton movie={movie} />
+          </div>
 
           <p className='text-green-400 font-semibold mt-4'>
             New <span>2023</span>
