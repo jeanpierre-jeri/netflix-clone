@@ -1,5 +1,3 @@
-import { type ChangeEvent } from 'react'
-
 interface Props {
   id: string
   label: string

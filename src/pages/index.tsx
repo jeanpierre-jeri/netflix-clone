@@ -1,11 +1,11 @@
 import type { GetServerSideProps } from 'next'
-import { serverSession } from '@/lib/server-auth'
 import { BillBoard, MovieList, Navbar } from '@/components/organisms'
+import { InfoModal } from '@/components/molecules'
+import { useFavorites } from '@/hooks'
+import { serverSession } from '@/lib/server-auth'
 import { getMovies, getMoviesByUserFavoriteIds, getRandomMovie } from '@/lib/prisma/movies'
-import { type Movie } from '@prisma/client'
 import { getUserFavoriteIds } from '@/lib/prisma/user'
-import { useFavorites } from '@/hooks/useFavorites'
-import { InfoModal } from '@/components/molecules/InfoModal'
+import { type Movie } from '@prisma/client'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const { session } = await serverSession(req, res)

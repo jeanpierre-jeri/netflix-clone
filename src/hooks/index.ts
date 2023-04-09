@@ -1,1 +1,1 @@
-export * from './useCurrentUser'
+export * from './useFavorites'

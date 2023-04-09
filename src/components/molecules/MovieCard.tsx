@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { type Movie } from '@prisma/client'
-import { ArrowDownIcon, PlayIcon } from '../atoms'
-import { FavoriteButton } from '../atoms/FavoriteButton'
+import { ArrowDownIcon, PlayIcon, FavoriteButton } from '../atoms'
 import { useModalStore } from '@/store'
 
 interface Props {

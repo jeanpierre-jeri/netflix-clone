@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '@/lib/db'
+import { prisma } from '@/lib/prisma/db'
 import { FormUser } from '@/types'
 import { hash } from 'bcrypt'
 

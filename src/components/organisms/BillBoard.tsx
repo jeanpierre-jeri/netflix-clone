@@ -1,6 +1,5 @@
 import { type Movie } from '@prisma/client'
-import { InfoIcon } from '../atoms'
-import { PlayButton } from '../atoms/PlayButton'
+import { InfoIcon, PlayButton } from '../atoms'
 import { useModalStore } from '@/store'
 
 interface Props {
