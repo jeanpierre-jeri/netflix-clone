@@ -5,6 +5,7 @@ import { getMovies, getMoviesByUserFavoriteIds, getRandomMovie } from '@/lib/pri
 import { type Movie } from '@prisma/client'
 import { getUserFavoriteIds } from '@/lib/prisma/user'
 import { useFavorites } from '@/hooks/useFavorites'
+import { InfoModal } from '@/components/molecules/InfoModal'
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const { session } = await serverSession(req, res)
@@ -53,6 +54,7 @@ export default function Home({ randomMovie, movies }: Props) {
         <MovieList movies={movies} title='Trending Now' />
         <MovieList movies={favorites} title='My List' />
       </main>
+      <InfoModal />
     </>
   )
 }

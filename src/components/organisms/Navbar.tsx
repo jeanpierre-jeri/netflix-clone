@@ -90,7 +90,7 @@ export function Navbar() {
                 <Image
                   src={redUserImage}
                   alt='User Image'
-                  className='aspect-square w-6 lg:w-10 rounded-md overflow-hidden'
+                  className='aspect-square w-5 lg:w-10 rounded-md overflow-hidden'
                 />
                 <div className={`w-4 text-white transition-all ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`}>
                   <ChevronDownIcon />

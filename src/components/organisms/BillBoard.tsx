@@ -1,12 +1,14 @@
 import { type Movie } from '@prisma/client'
 import { InfoIcon } from '../atoms'
 import { PlayButton } from '../atoms/PlayButton'
+import { useModalStore } from '@/store'
 
 interface Props {
   randomMovie: Movie
 }
 
 export function BillBoard({ randomMovie }: Props) {
+  const openModal = useModalStore((state) => state.openModal)
   return (
     <section className='relative'>
       <video
@@ -29,6 +31,7 @@ export function BillBoard({ randomMovie }: Props) {
         <div className='flex gap-3 mt-3 md:mt-4 items-center'>
           <PlayButton id={randomMovie.id} />
           <button
+            onClick={() => openModal(randomMovie)}
             type='button'
             className='flex items-center  gap-2 bg-white/30 text-white rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold hover:bg-white/20 transition-colors'
           >

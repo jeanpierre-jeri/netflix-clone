@@ -1,14 +1,16 @@
-import { type Movie } from '@prisma/client'
-import Image from 'next/image'
-import { PlayIcon } from '../atoms'
-import { FavoriteButton } from '../atoms/FavoriteButton'
 import Link from 'next/link'
+import Image from 'next/image'
+import { type Movie } from '@prisma/client'
+import { ArrowDownIcon, PlayIcon } from '../atoms'
+import { FavoriteButton } from '../atoms/FavoriteButton'
+import { useModalStore } from '@/store'
 
 interface Props {
   movie: Movie
 }
 
 export function MovieCard({ movie }: Props) {
+  const openModal = useModalStore((state) => state.openModal)
   return (
     <article className='group bg-zinc-900 relative h-[12vw]'>
       <Image
@@ -37,6 +39,13 @@ export function MovieCard({ movie }: Props) {
             </Link>
 
             <FavoriteButton movie={movie} />
+
+            <button
+              onClick={() => openModal(movie)}
+              className='ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition-all hover:border-neutral-300 p-1 text-white'
+            >
+              <ArrowDownIcon />
+            </button>
           </div>
 
           <p className='text-green-400 font-semibold mt-4'>
