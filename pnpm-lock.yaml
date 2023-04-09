@@ -31,6 +31,9 @@ dependencies:
   next-auth:
     specifier: 4.21.1
     version: 4.21.1(next@13.2.4)(react-dom@18.2.0)(react@18.2.0)
+  nextjs-progressbar:
+    specifier: 0.0.16
+    version: 0.0.16(next@13.2.4)(react@18.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -411,6 +414,10 @@ packages:
 
   /@types/node@18.15.11:
     resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
+
+  /@types/nprogress@0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+    dev: false
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -2171,6 +2178,19 @@ packages:
       - babel-plugin-macros
     dev: false
 
+  /nextjs-progressbar@0.0.16(next@13.2.4)(react@18.2.0):
+    resolution: {integrity: sha512-GV0fD38EMD3vSDCmkq+tObmoup6QA91a6a9MxGuhJZuRk/9TNsrHGnIQQQ/sggkMkXuT4fBgF6jRjFwScDT3zA==}
+    peerDependencies:
+      next: '>= 6.0.0'
+      react: '>= 16.0.0'
+    dependencies:
+      '@types/nprogress': 0.2.0
+      next: 13.2.4(react-dom@18.2.0)(react@18.2.0)
+      nprogress: 0.2.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /node-abi@3.35.0:
     resolution: {integrity: sha512-jAlSOFR1Bls963NmFwxeQkNTzqjUF0NThm8Le7eRIRGzFUVJuMOFZDLv5Y30W/Oaw+KEebEJLAigwO9gQHoEmw==}
     engines: {node: '>=10'}
@@ -2227,6 +2247,10 @@ packages:
       console-control-strings: 1.1.0
       gauge: 3.0.2
       set-blocking: 2.0.0
+    dev: false
+
+  /nprogress@0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
     dev: false
 
   /oauth@0.9.15:
